@@ -27,8 +27,9 @@ const Auth = () => {
             }
             console.log(data);
         } catch (error) {
-            console.log(error);
+            console.log(error.code);
         }
+        
         
     }
     return(
@@ -47,3 +48,35 @@ const Auth = () => {
 }
 
 export default Auth;
+
+
+
+
+// Promise {<pending>}
+// [[Prototype]]
+// : 
+// Promise
+// [[PromiseState]]
+// : 
+// "rejected"
+// [[PromiseResult]]
+// : 
+// FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password). at _errorWithCustomMessage (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:853:18) at _performFetchWithErrorHandling (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:1628:15) at async _performSignInRequest (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:1646:26) at async createUserWithEmailAndPassword (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:6927:20)
+// code
+// : 
+// "auth/weak-password"
+// customData
+// : 
+// {appName: '[DEFAULT]'}
+// name
+// : 
+// "FirebaseError"
+// message
+// : 
+// "Firebase: Password should be at least 6 characters (auth/weak-password)."
+// stack
+// : 
+// "FirebaseError: Firebase: Password should be at least 6 characters (auth/weak-password).\n    at _errorWithCustomMessage (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:853:18)\n    at _performFetchWithErrorHandling (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:1628:15)\n    at async _performSignInRequest (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:1646:26)\n    at async createUserWithEmailAndPassword (http://localhost:3000/main.cf3e3776ae134ccca9ae.hot-update.js:6927:20)"
+// [[Prototype]]
+// : 
+// Error

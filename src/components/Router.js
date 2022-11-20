@@ -6,14 +6,14 @@ import Profile from "routes/Profile"
 import Navigation from "components/Navigation";
 
 const AppRouter = (props) => {
-    const { isLoggedIn } = props;
+    const { isLoggedIn, userObj } = props;
 
     return (
         <Router>
             {isLoggedIn && <Navigation />}
             <Routes>
                 { isLoggedIn ? <>
-                    <Route exact path="/" element={ <Home /> } />
+                    <Route exact path="/" element={ <Home userObj={userObj}/> } />
                     <Route exact path="/profile" element={ <Profile /> } />
                 </>
                 : <Route exact path="/" element={ <Auth /> } />

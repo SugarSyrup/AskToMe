@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { dbService } from "fbInstace";
+import { dbService, storageService } from "fbInstace";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { ref, deleteObject } from 'firebase/storage';
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
+  const NweetTextRef =doc(dbService, "nweets", `${nweetObj.id}`);
   const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this nweet?");
     if (ok) {
-      await dbService.doc(`nweets/${nweetObj.id}`).delete();
+        await deleteDoc(NweetTextRef );
+        const deleteRef = ref(storageService, nweetObj.attachmentUrl);
+        await deleteObject(deleteRef);
     }
   };
   const toggleEditing = () => setEditing((prev) => !prev);
   const onSubmit = async (event) => {
     event.preventDefault();
-    await dbService.doc(`nweets/${nweetObj.id}`).update({
-      text: newNweet,
+    await updateDoc(NweetTextRef, {
+        text: newNweet,
     });
     setEditing(false);
   };
@@ -43,6 +48,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{nweetObj.text}</h4>
+          {nweetObj.attachmentUrl && (
+            <img src={nweetObj.attachmentUrl} width="50px" height="50px" />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete Nweet</button>

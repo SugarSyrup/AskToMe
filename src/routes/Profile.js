@@ -1,17 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { authService } from "fbInstace";
+import { authService,dbService } from "fbInstace";
+import { updateProfile } from "@firebase/auth";
+import { collection, getDocs, query, where, orderBy } from "@firebase/firestore";
 
-const Profile = () => {
+const Profile = ({ userObj, refreshUser }) => {
+    const [displayName, setDisplayName] = useState(userObj.displayName);
+    const [myNweets, setMyNweets] = useState([]);
+
     const navigate = useNavigate();
     const onLogOutClick = () => {
         authService.signOut();
         navigate("/");
+        refreshUser();
     }
 
-    return (<>
-        <button onClick={onLogOutClick}>LOG OUT</button>
-    </>);
+    const getMyNweets = async () => {
+        const docsQuery = query(
+            collection(dbService, "nweets"),
+            where("creatorId", "==", userObj.uid),
+            orderBy("createdAt")
+        );
+        setMyNweets(await getDocs(docsQuery));
+    }
+
+    const onChange = (event) => {
+        const {
+            target: {value}
+        } = event;
+        setDisplayName(value);
+    }
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        await updateProfile(authService.currentUser, { displayName });
+        refreshUser();
+    }
+
+    useEffect(() => {
+        getMyNweets();
+    },[])
+    return (
+        <div className="container">
+            <form onSubmit={onSubmit} className="profileForm">
+                <input type="text" placeholder="Display Name" onChange={onChange} autoFocus className="formInput"/>
+                <input
+                    type="submit"
+                    value="Update Profile"
+                    className="formBtn"
+                    style={{
+                        marginTop: 10,
+                    }}
+                />
+                <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+                    Log Out
+                </span>
+            </form>
+            {
+                myNweets.forEach((Nweet) => {
+                    const nweetData = Nweet.data();
+                    <Nweet
+                        key={nweetData.creatorId}
+                        nweetObj={nweetData}
+                        isOwner={nweetData.creatorId === userObj.uid}
+                    />
+                })
+            }
+        </div>
+    );
 }
 
 export default Profile;

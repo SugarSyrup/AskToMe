@@ -4,14 +4,17 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-  authDomain: "nwitter-616a8.firebaseapp.com",
-  projectId: "nwitter-616a8",
-  storageBucket: "nwitter-616a8.appspot.com",
-  messagingSenderId: "1002681552407",
-  appId: "1:1002681552407:web:4711dfa70ba60f36be9652"
+  authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APPID,
 };
 
 // Initialize Firebase

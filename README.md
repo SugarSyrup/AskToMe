@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Nwitter (가제)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 질문함
 
-## Available Scripts
+동아리에서 조원들에게 자유롭게 질문 받을 수 있고 나한테 알람이 오는 질문함 만드는 중...
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+### Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Only React + Firebase를 이용한 웹사이트 입니다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+npm run start
+```
 
-### `npm test`
+## Deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[github-pages](sugarsyrup.gihub.io/nwitter)
 
-### `npm run build`
+## Tech Stacks
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://img.shields.io/badge/react-FFFFFF?style=for-the-badge&logo=react&logoColor=61DAFB">
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=Firebase&logoColor=yellow">
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
+<img src="https://img.shields.io/badge/GitHub-Pages-222222?style=for-the-badge&logo=GitHub-Pages&logoColor=white">
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contributing
 
-### `npm run eject`
+## Versioning
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Not Finished Yet...
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Authors
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- JaYun Gyeon - Initial work - [SugarSyrup](https://github.com/SugarSyrup)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
+## Acknowledgments
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Add to
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+[] Photo 수정하는 기능 추가
 
-### Code Splitting
+[] My-page 에 자신이 올린 글 확인 하기 추가
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[] 로그인 폼이 필요한가 에 대한 고민? (익명으로 질문을 자유롭게 남길수 있게 + 마이페이지도 빼고)

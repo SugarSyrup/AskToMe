@@ -23,6 +23,8 @@ const Home = ({ userObj }) => {
             setNweets(nweetArr);
         });
     }, [])
+
+    console.log(nweets);
     
     return (
         <div className="container">
@@ -34,7 +36,11 @@ const Home = ({ userObj }) => {
                         key={nweet.id}
                         nweetObj={nweet}
                         isOwner={nweet.creatorId === userObj.uid}
+                        createdAt={nweet.cretedAtString}
                     />
+                    // nweet.comments.map((comment) => (
+                    //     <Comment
+                    // ))
                 ))
             }
             </div>

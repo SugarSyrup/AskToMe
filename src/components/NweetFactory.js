@@ -29,6 +29,7 @@ const NweetFactory = ({ userObj }) => {
     }
     const onSubmit = async (event) => {
         event.preventDefault();    
+        const timeNow = new Date().toString();
         if (nweet === "") {
             return;
           }
@@ -43,7 +44,9 @@ const NweetFactory = ({ userObj }) => {
         const nweetObj = {
             text:nweet,
             createdAt: Date.now(),
+            cretedAtString : new Date().toString(),
             creatorId : userObj.uid,
+            comments: [],
             attachmentUrl,
         };
         await addDoc(collection(dbService, "nweets"), nweetObj);

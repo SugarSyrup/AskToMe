@@ -4,6 +4,8 @@ import { authService,dbService } from "fbInstace";
 import { updateProfile } from "@firebase/auth";
 import { collection, getDocs, query, where, orderBy } from "@firebase/firestore";
 
+import Nweet from "components/Nweet";
+
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);
     const [myNweets, setMyNweets] = useState([]);
@@ -19,7 +21,7 @@ const Profile = ({ userObj, refreshUser }) => {
         const docsQuery = query(
             collection(dbService, "nweets"),
             where("creatorId", "==", userObj.uid),
-            orderBy("createdAt")
+            orderBy("createdAt", "desc")
         );
         setMyNweets(await getDocs(docsQuery));
     }
@@ -39,7 +41,8 @@ const Profile = ({ userObj, refreshUser }) => {
 
     useEffect(() => {
         getMyNweets();
-    },[])
+    },[]);
+
     return (
         <div className="container">
             <form onSubmit={onSubmit} className="profileForm">
@@ -56,15 +59,14 @@ const Profile = ({ userObj, refreshUser }) => {
                     Log Out
                 </span>
             </form>
-            {
-                myNweets.forEach((Nweet) => {
-                    const nweetData = Nweet.data();
+            {   
+                myNweets.length !== 0 && myNweets.docs.map((myNweet) => (
                     <Nweet
-                        key={nweetData.creatorId}
-                        nweetObj={nweetData}
-                        isOwner={nweetData.creatorId === userObj.uid}
+                        key={myNweet.data().createdAt}
+                        nweetObj={myNweet.data()}
+                        isOwner={myNweet.data().creatorId === userObj.uid}
                     />
-                })
+                ))
             }
         </div>
     );

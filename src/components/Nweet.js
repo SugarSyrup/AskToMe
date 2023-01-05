@@ -4,7 +4,7 @@ import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { ref, deleteObject } from 'firebase/storage';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPencilAlt, faComment } from "@fortawesome/free-solid-svg-icons";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -32,6 +32,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
     } = event;
     setNewNweet(value);
   };
+  const onClickComments = (event) => {
+
+  }
   return (
     <div className="nweet">
       {editing ? (
@@ -56,16 +59,21 @@ const Nweet = ({ nweetObj, isOwner }) => {
         <>
           <h4>{nweetObj.text}</h4>
           {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
+          <div className="nweet__actions">
           {isOwner && (
-            <div className="nweet__actions">
+            <>
               <span onClick={onDeleteClick}>
                 <FontAwesomeIcon icon={faTrash} />
               </span>
               <span onClick={toggleEditing}>
                 <FontAwesomeIcon icon={faPencilAlt} />
               </span>
-            </div>
+            </>
           )}
+          <span onClick={onClickComments}>
+                <FontAwesomeIcon icon={faComment} />
+              </span>
+          </div>
         </>
       )}
     </div>

@@ -29,7 +29,6 @@ const NweetFactory = ({ userObj }) => {
     }
     const onSubmit = async (event) => {
         event.preventDefault();    
-        const timeNow = new Date().toString();
         if (nweet === "") {
             return;
           }

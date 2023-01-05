@@ -5,9 +5,11 @@ import { dbService } from "fbInstace";
 
 import Nweet from "components/Nweet";
 import NweetFactory from "components/NweetFactory";
+import { useRecoilState } from "recoil";
+import { allNweets } from "nweets";
 
 const Home = ({ userObj }) => {
-    const [nweets, setNweets] = useState([]);
+    const [nweets, setNweets] = useRecoilState(allNweets);
     
     useEffect(() => {
         const q = query(

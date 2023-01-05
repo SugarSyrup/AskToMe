@@ -9,13 +9,16 @@ import { faTrash, faPencilAlt, faComment } from "@fortawesome/free-solid-svg-ico
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
-  const NweetTextRef =doc(dbService, "nweets", `${nweetObj.id}`);
+  const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
+  console.log(NweetTextRef);
   const onDeleteClick = async () => {
     const ok = window.confirm("Are you sure you want to delete this nweet?");
     if (ok) {
-        await deleteDoc(NweetTextRef );
-        const deleteRef = ref(storageService, nweetObj.attachmentUrl);
-        await deleteObject(deleteRef);
+        await deleteDoc(NweetTextRef);
+        if(nweetObj.attachmentUrl){
+          const deleteRef = ref(storageService, nweetObj.attachmentUrl);
+          await deleteObject(deleteRef);
+        }
     }
   };
   const toggleEditing = () => setEditing((prev) => !prev);

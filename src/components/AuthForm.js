@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import { authService } from "fbInstace";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
 
-const inputStyles = {};
-
 const AuthForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

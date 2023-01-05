@@ -5,10 +5,18 @@ import { updateProfile } from "@firebase/auth";
 import { collection, getDocs, query, where, orderBy } from "@firebase/firestore";
 
 import Nweet from "components/Nweet";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { allNweets } from "nweets";
 
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);
+    const _allNweets = useRecoilValue(allNweets);
     const [myNweets, setMyNweets] = useState([]);
+    console.log("myNweets", myNweets);
+    
+    useEffect(() => {
+        setMyNweets(_allNweets.filter((nweet) => nweet.creatorId === userObj.uid))
+    }, []);
 
     const navigate = useNavigate();
     const onLogOutClick = () => {
@@ -17,14 +25,14 @@ const Profile = ({ userObj, refreshUser }) => {
         refreshUser();
     }
 
-    const getMyNweets = async () => {
-        const docsQuery = query(
-            collection(dbService, "nweets"),
-            where("creatorId", "==", userObj.uid),
-            orderBy("createdAt", "desc")
-        );
-        setMyNweets(await getDocs(docsQuery));
-    }
+    // const getMyNweets = async () => {
+    //     const docsQuery = query(
+    //         collection(dbService, "nweets"),
+    //         where("creatorId", "==", userObj.uid),
+    //         orderBy("createdAt", "desc")
+    //     );
+    //     setMyNweets(await getDocs(docsQuery));
+    // }
 
     const onChange = (event) => {
         const {
@@ -39,9 +47,9 @@ const Profile = ({ userObj, refreshUser }) => {
         refreshUser();
     }
 
-    useEffect(() => {
-        getMyNweets();
-    },[]);
+    // useEffect(() => {
+    //     getMyNweets();
+    // },[]);
 
     return (
         <div className="container">
@@ -60,11 +68,11 @@ const Profile = ({ userObj, refreshUser }) => {
                 </span>
             </form>
             {   
-                myNweets.length !== 0 && myNweets.docs.map((myNweet) => (
+                myNweets.length !== 0 && myNweets.map((myNweet) => (
                     <Nweet
-                        key={myNweet.data().createdAt}
-                        nweetObj={myNweet.data()}
-                        isOwner={myNweet.data().creatorId === userObj.uid}
+                        key={myNweet.createdAt}
+                        nweetObj={myNweet}
+                        isOwner={true}
                     />
                 ))
             }

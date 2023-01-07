@@ -6,18 +6,13 @@ import { collection, getDocs, query, where, orderBy } from "@firebase/firestore"
 
 import Nweet from "components/Nweet";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { allNweets } from "nweets";
+import { allNweets, getAllNweets } from "nweets";
 
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);
-    const _allNweets = useRecoilValue(allNweets);
-    const [myNweets, setMyNweets] = useState([]);
-    console.log("myNweets", myNweets);
+    const [myNweets, _] = useState(useRecoilValue(allNweets).filter((nweet) => nweet.creatorId === userObj.uid));
+    const v = useRecoilValue(getAllNweets);
     
-    useEffect(() => {
-        setMyNweets(_allNweets.filter((nweet) => nweet.creatorId === userObj.uid))
-    }, []);
-
     const navigate = useNavigate();
     const onLogOutClick = () => {
         authService.signOut();

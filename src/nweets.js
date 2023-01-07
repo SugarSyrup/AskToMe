@@ -7,27 +7,31 @@ export const allNweets = atom({
     default: []
 });
 
-// export const getAllNweets = selector({
-//     key:"allNweets/get",
-//     get: async ({get}) => {
-//         let allNweetsValue;
-//         const _query = query(
-//             collection(dbService, "nweets"),
-//             orderBy("createdAt", "desc")
-//         );
+const getAllNweetsFireStore = async () => {
+    let returnValue = [];
+    const _query = query(
+        collection(dbService, "nweets"),
+        orderBy("createdAt", "desc")
+    );
 
-//         onSnapshot(_query, (snapshot) => {
-//             const nweetsArr = snapshot.docs.map((doc) => ({
-//                 id:doc.id,
-//                 ...doc.data(),
-//             }));
-//             allNweetsValue = nweetsArr;
-//         })
+    onSnapshot(_query, async (snapshot) => {
+        const nweetsArr = await snapshot.docs.map((doc) => ({
+            id:doc.id,
+            ...doc.data(),
+        }));
+        returnValue = nweetsArr;
+    })
 
-//          allNweetsValue;
-//     },
+    return returnValue;
+}
+export const getAllNweets = selector({
+    key:"allNweets/get",
+    get: async ({get}) => {
+        const response = await getAllNweetsFireStore();
+        return response
+    },
 
-//     set:({set}, newValue) => {
-//         set(allNweets, newValue);
-//     }
-// })
+    set:({set}, newValue) => {
+        set(allNweets, newValue);
+    }
+})

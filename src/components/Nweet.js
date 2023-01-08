@@ -6,8 +6,11 @@ import { ref, deleteObject } from 'firebase/storage';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt, faComment } from "@fortawesome/free-solid-svg-icons";
 
+import Comments from "components/Comments";
+
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
+  const [commenting, setCommenting] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
   const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
   console.log(NweetTextRef);
@@ -36,6 +39,8 @@ const Nweet = ({ nweetObj, isOwner }) => {
     setNewNweet(value);
   };
   const onClickComments = (event) => {
+    event.preventDefault();
+    setCommenting(true);
 
   }
   return (
@@ -79,6 +84,12 @@ const Nweet = ({ nweetObj, isOwner }) => {
           </div>
         </>
       )}
+      {setCommenting &&
+        <form className="nweet__comment__input">
+          <input type="text" placeholder="texting your comments" />
+          <input type="submit"></input>
+        </form>        
+      }
     </div>
   );
 };

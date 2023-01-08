@@ -213,6 +213,13 @@ form {
   margin-right: 10px;
 }
 
+.nweet__comment__input{
+  height:10px;
+  position:absolute;
+
+  bottom: -5px;
+}
+
 /* Auth */
 
 .authContainer {

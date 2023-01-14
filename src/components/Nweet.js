@@ -7,11 +7,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt, faComment } from "@fortawesome/free-solid-svg-icons";
 
 import Comments from "components/Comments";
+import { useSetRecoilState } from "recoil";
+import { isSelected, selectedNweet } from "nweets";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [commenting, setCommenting] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
+
+  const setSelectedNweet = useSetRecoilState(selectedNweet);
+  const _isSelected = useSetRecoilState(isSelected);
   const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
   console.log(NweetTextRef);
   const onDeleteClick = async () => {
@@ -41,7 +46,14 @@ const Nweet = ({ nweetObj, isOwner }) => {
   const onClickComments = (event) => {
     event.preventDefault();
     setCommenting(true);
-
+  }
+  const onCommentSubmit = (event) => {
+    event.preventDefault();
+    _isSelected(true);
+    setSelectedNweet(nweetObj);
+  }
+  const onNweetClick = (event) => {
+    event.preventDefault();
   }
   return (
     <div className="nweet">
@@ -64,7 +76,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
           </span>
         </>
       ) : (
-        <>
+        <div onClick={onNweetClick}>
           <h4>{nweetObj.text}</h4>
           {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
           <div className="nweet__actions">
@@ -82,14 +94,8 @@ const Nweet = ({ nweetObj, isOwner }) => {
                 <FontAwesomeIcon icon={faComment} />
               </span>
           </div>
-        </>
+        </div>
       )}
-      {setCommenting &&
-        <form className="nweet__comment__input">
-          <input type="text" placeholder="texting your comments" />
-          <input type="submit"></input>
-        </form>        
-      }
     </div>
   );
 };

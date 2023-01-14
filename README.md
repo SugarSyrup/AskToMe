@@ -44,8 +44,18 @@ Not Finished Yet...
 
 ## Add to
 
-[] Photo 수정하는 기능 추가
-
 [✔] My-page 에 자신이 올린 글 확인 하기 추가
 
-[] 로그인 폼이 필요한가 에 대한 고민? (익명으로 질문을 자유롭게 남길수 있게 + 마이페이지도 빼고)
+[] ISSUE#1 현재 전채 nweets가 전역상태로 관리되고 있는데, Profile 페이지에 접속할때는 동작 X!, nweets가 selector get으로 비동기 처리 하는게 아니라, 페이지 들어갈때마다 전역상태로 onSnapshot으로 값을 올리는 중이라서 그럼!!
+
+onSnapShot을 사용하고 싶은데 onSnapshot이 비동기 처리가 안되서 selector에 적용시키지 못한 부분도 있음
+
+[] Comments -> 더보기 느낌으로! 
+
+[] Photo 수정하는 기능 추가
+
+[] avatar Image + Post Images  추가하기
+
+[] Typescript로 Refactoring
+
+[] Components 재분배? 한 파일에서 한개의 동작만 할 수 있게 지원

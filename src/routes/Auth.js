@@ -4,11 +4,8 @@ import { authService } from "fbInstace";
 import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup} from "firebase/auth"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTwitter,
-  faGoogle,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
+import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faCookieBite } from "@fortawesome/free-solid-svg-icons";
 
 import AuthForm from "components/AuthForm";
 
@@ -30,8 +27,8 @@ const Auth = () => {
     return(
         <div className="authContainer">
             <FontAwesomeIcon
-                icon={faTwitter}
-                color={"#04AAFF"}
+                icon={faCookieBite}
+                color={"#FFBABA"}
                 size="3x"
                 style={{ marginBottom: 30 }}
             />

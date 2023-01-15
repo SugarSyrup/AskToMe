@@ -8,7 +8,7 @@ import { faTrash, faPencilAlt, faComment } from "@fortawesome/free-solid-svg-ico
 
 import Comments from "components/Comments";
 import { useSetRecoilState } from "recoil";
-import { isSelected, selectedNweet } from "nweets";
+import { isSelected, selectedNweet } from "atoms";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);

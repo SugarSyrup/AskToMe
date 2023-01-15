@@ -6,7 +6,7 @@ import { collection, getDocs, query, where, orderBy } from "@firebase/firestore"
 
 import Nweet from "components/Nweet";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { allNweets, getAllNweets } from "nweets";
+import { allNweets, getAllNweets } from "atoms";
 
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);

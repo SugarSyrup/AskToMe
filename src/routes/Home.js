@@ -6,7 +6,7 @@ import { dbService } from "fbInstace";
 import Nweet from "components/Nweet";
 import NweetFactory from "components/NweetFactory";
 import { useRecoilState } from "recoil";
-import { allNweets } from "nweets";
+import { allNweets } from "atoms";
 
 const Home = ({ userObj }) => {
     const [nweets, setNweets] = useRecoilState(allNweets);

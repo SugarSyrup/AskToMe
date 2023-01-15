@@ -37,7 +37,7 @@ export const getAllNweets = selector({
 })
 
 export const isSelected = atom({
-    ket:"isSelected",
+    key:"isSelected",
     default:false
 })
 export const selectedNweet = atom({

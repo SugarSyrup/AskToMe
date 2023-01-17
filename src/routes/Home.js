@@ -24,9 +24,7 @@ const Home = ({ userObj }) => {
             }));
             setNweets(nweetArr);
         });
-    }, [])
-
-    console.log(nweets);
+    }, []);
     
     return (
         <div className="container">

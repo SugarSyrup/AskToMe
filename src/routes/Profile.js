@@ -2,49 +2,54 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService,dbService } from "fbInstace";
 import { updateProfile } from "@firebase/auth";
-import { collection, getDocs, query, where, orderBy } from "@firebase/firestore";
+import { collection, getDocs, query, where, orderBy, onSnapshot } from "@firebase/firestore";
 
 import Nweet from "components/Nweet";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { allNweets, getAllNweets } from "atoms";
 
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);
+    //todo : selector로 바꾸기
     const [myNweets, _] = useState(useRecoilValue(allNweets).filter((nweet) => nweet.creatorId === userObj.uid));
-    const v = useRecoilValue(getAllNweets);
-    
+    const setNweets = useSetRecoilState(allNweets);
+
     const navigate = useNavigate();
+
     const onLogOutClick = () => {
         authService.signOut();
         navigate("/");
         refreshUser();
     }
-
-    // const getMyNweets = async () => {
-    //     const docsQuery = query(
-    //         collection(dbService, "nweets"),
-    //         where("creatorId", "==", userObj.uid),
-    //         orderBy("createdAt", "desc")
-    //     );
-    //     setMyNweets(await getDocs(docsQuery));
-    // }
-
     const onChange = (event) => {
         const {
             target: {value}
         } = event;
         setDisplayName(value);
     }
-
     const onSubmit = async (event) => {
         event.preventDefault();
         await updateProfile(authService.currentUser, { displayName });
         refreshUser();
     }
 
-    // useEffect(() => {
-    //     getMyNweets();
-    // },[]);
+    useEffect(() => {
+        if(myNweets.length === 0) {
+            console.log("starts!");
+            const q = query(
+                collection(dbService, "nweets"),
+                orderBy("createdAt", "desc")
+            );
+    
+            onSnapshot(q, (snapshot) => {
+                const nweetArr = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setNweets(nweetArr);
+            });
+        }
+    }, [])
 
     return (
         <div className="container">

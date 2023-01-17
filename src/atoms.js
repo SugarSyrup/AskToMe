@@ -7,28 +7,10 @@ export const allNweets = atom({
     default: []
 });
 
-const getAllNweetsFireStore = async () => {
-    let returnValue = [];
-    const _query = query(
-        collection(dbService, "nweets"),
-        orderBy("createdAt", "desc")
-    );
-
-    onSnapshot(_query, async (snapshot) => {
-        const nweetsArr = await snapshot.docs.map((doc) => ({
-            id:doc.id,
-            ...doc.data(),
-        }));
-        returnValue = nweetsArr;
-    })
-
-    return returnValue;
-}
 export const getAllNweets = selector({
     key:"allNweets/get",
     get: async ({get}) => {
-        const response = await getAllNweetsFireStore();
-        return response
+        
     },
 
     set:({set}, newValue) => {

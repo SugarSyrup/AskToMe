@@ -7,6 +7,7 @@ function App() {
   const [userObj, setUserObj] = useState(null);
 
   const refreshUser = () => {
+    //todo : accesstoken 들어있음, 필요한 user data만 저장
     setUserObj(Object.assign({}, authService.currentUser));
   }
 

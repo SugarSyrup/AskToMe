@@ -10,6 +10,7 @@ import { allNweets } from "atoms";
 
 const Home = ({ userObj }) => {
     const [nweets, setNweets] = useRecoilState(allNweets);
+    // const userData
     
     useEffect(() => {
         const q = query(

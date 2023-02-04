@@ -21,7 +21,6 @@ const Auth = () => {
             provider = new GithubAuthProvider();
         }
         const data = await signInWithPopup(authService, provider);
-        console.log(data);
     }
 
     return(

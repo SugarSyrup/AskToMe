@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { authService,dbService } from "fbInstace";
 import { updateProfile } from "@firebase/auth";
-import { collection, getDocs, query, where, orderBy, onSnapshot } from "@firebase/firestore";
+import { collection, getDocs, query, where, orderBy, onSnapshot, getFirestore, getDoc } from "@firebase/firestore";
 
 import Nweet from "components/Nweet";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import { allNweets, getAllNweets } from "atoms";
+import { useRecoilValue } from "recoil";
+import { getMyNeewts } from "atoms";
 
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);
     //todo : selector로 바꾸기
-    const [myNweets, _] = useState(useRecoilValue(allNweets).filter((nweet) => nweet.creatorId === userObj.uid));
-    const setNweets = useSetRecoilState(allNweets);
+    const myNweets = useRecoilValue(getMyNeewts);
 
     const navigate = useNavigate();
 
@@ -34,21 +33,20 @@ const Profile = ({ userObj, refreshUser }) => {
     }
 
     useEffect(() => {
-        if(myNweets.length === 0) {
-            console.log("starts!");
-            const q = query(
-                collection(dbService, "nweets"),
-                orderBy("createdAt", "desc")
-            );
+        // if(myNweets.length === 0) {
+        //     const q = query(
+        //         collection(dbService, "nweets"),
+        //         orderBy("createdAt", "desc")
+        //     );
     
-            onSnapshot(q, (snapshot) => {
-                const nweetArr = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setNweets(nweetArr);
-            });
-        }
+        //     onSnapshot(q, (snapshot) => {
+        //         const nweetArr = snapshot.docs.map((doc) => ({
+        //             id: doc.id,
+        //             ...doc.data(),
+        //         }));
+        //         setNweets(nweetArr);
+        //     });
+        // }
     }, [])
 
     return (

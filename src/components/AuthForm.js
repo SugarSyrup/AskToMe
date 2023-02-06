@@ -1,56 +1,37 @@
 import React, {useState} from "react";
 import { authService } from "fbInstace";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { useForm } from "react-hook-form";
 
 const AuthForm = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordCheck, setPasswordCheck] = useState("");
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const [newAccount, setNewAccount] = useState(false);
-    const [errorMsg, setErrorMsg] = useState("");
-    const onChange = (event) => {
-        const {target : {name, value}} = event;
-        if(name === "email") {
-            setEmail(value);
-        }
-        if(name === "password") {
-            setPassword(value);
-        }
-        if(name === "passwordCheck") {
-            setPasswordCheck(value);
-        }
-    }
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-        if(newAccount && password !== passwordCheck) {
+    const onSubmit = async (data) => {
+        const {email, password} = data;
+        if(newAccount && data.passwordCheck&& data.password !== data.passwordCheck) {
             window.alert("비밀번호가 일치 하지 않습니다.")
             return;
         }
-        try {
-            let data;
-            if(newAccount) {
-                data = await createUserWithEmailAndPassword(authService,email,password);
-            } else {
-                data = await signInWithEmailAndPassword(authService, email, password);
-            }
-            console.log(data);
-        } catch (error) {
-            console.log(error.message);
-            setErrorMsg(error.message);
+
+        if(newAccount) {
+            await createUserWithEmailAndPassword(authService,email,password);
+        } else {
+            await signInWithEmailAndPassword(authService, email, password);
         }
     }
 
     const toggleAccount = () => setNewAccount((prev) => !prev);
 
     return (
-        <form onSubmit={onSubmit} className="container">
-            <input name="email" type="email" placeholder="Email" value={email} onChange={onChange} className="authInput" />
-            <input name="password" type="password" placeholder="Password" value={password} onChange={onChange} className="authInput" />
-            { newAccount ? <input name="passwordCheck" type="password" placeholder="Password Check" value={passwordCheck} onChange={onChange} className="authInput" /> : <></>}            
+        <form onSubmit={handleSubmit(onSubmit)} className="container">
+            <input {...register('email', {required: true})} type="email" placeholder="Email" className="authInput" />
+            {errors.email && <p style={{color:"red"}}>Username is required</p>}
+            <input {...register('password')} type="password" placeholder="Password" className="authInput" />
+            {errors.password && <p style={{color:"red"}}>password is required</p>}
+            { newAccount ? <input {...register('passwordCheck')} type="password" placeholder="Password Check" className="authInput" /> : <></>}            
             <input type="submit" value={newAccount ? "Create Account" : "LogIn"} className="authInput authSubmit" />
             <span onClick={toggleAccount} className="authSwitch"> {newAccount? "Log IN" : "Create New Account"} </span>
-            {errorMsg && <span className="authError">{errorMsg}</span>}
         </form>
     )
 }

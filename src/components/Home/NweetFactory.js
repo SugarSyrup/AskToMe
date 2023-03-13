@@ -64,7 +64,6 @@ const NweetFactory = ({ userObj }) => {
                     onChange={onChange}
                     type="text"
                     placeholder="What's on your mind?"
-                    maxLength={120}
                 />
                 <input type="submit" value="&rarr;" className="factoryInput__arrow" />
             </div>

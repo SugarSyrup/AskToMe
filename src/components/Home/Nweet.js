@@ -6,9 +6,9 @@ import { ref, deleteObject } from 'firebase/storage';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt, faComment } from "@fortawesome/free-solid-svg-icons";
 
-import Comments from "components/Comments";
+import Comments from "components/Home/Comments";
 import { useSetRecoilState } from "recoil";
-import { isSelected, selectedNweet } from "atoms";
+import { isSelected, selectedNweet } from "store/atoms";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);

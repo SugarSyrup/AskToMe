@@ -4,9 +4,9 @@ import { authService,dbService } from "fbInstace";
 import { updateProfile } from "@firebase/auth";
 import { collection, getDocs, query, where, orderBy, onSnapshot, getFirestore, getDoc } from "@firebase/firestore";
 
-import Nweet from "components/Nweet";
+import Nweet from "components/Home/Nweet";
 import { useRecoilValue } from "recoil";
-import { getMyNeewts } from "atoms";
+import { getMyNeewts } from "store/atoms";
 
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);

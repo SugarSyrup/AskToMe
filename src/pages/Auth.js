@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faCookieBite } from "@fortawesome/free-solid-svg-icons";
 
-import AuthForm from "components/AuthForm";
+import AuthForm from "components/Auth/AuthForm";
 
 const Auth = () => {
     const onSocialClick = async (event) => {

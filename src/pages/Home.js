@@ -3,10 +3,10 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 import { dbService } from "fbInstace";
 
-import Nweet from "components/Nweet";
-import NweetFactory from "components/NweetFactory";
+import Nweet from "components/Home/Nweet";
+import NweetFactory from "components/Home/NweetFactory";
 import { useRecoilState } from "recoil";
-import { allNweets } from "atoms";
+import { allNweets } from "store/atoms";
 
 const Home = ({ userObj }) => {
     const [nweets, setNweets] = useRecoilState(allNweets);

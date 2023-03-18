@@ -13,7 +13,7 @@ const Navigation = ({ userObj }) => {
                         <FontAwesomeIcon icon={faCookieBite} color={"#FFBABA"} size="2x" />
                     </Link>
                 </li>
-                {/* <li>
+                <li>
                     <Link
                         to="/profile"
                         style={{
@@ -31,7 +31,7 @@ const Navigation = ({ userObj }) => {
                                 : "Profile"}
                             </span>
                     </Link>
-                </li> */}
+                </li>
             </ul>
         </nav>
     );

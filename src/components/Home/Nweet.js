@@ -43,15 +43,15 @@ const Nweet = ({ nweetObj, isOwner }) => {
     } = event;
     setNewNweet(value);
   };
-  const onClickComments = (event) => {
-    event.preventDefault();
-    setCommenting(true);
-  }
-  const onCommentSubmit = (event) => {
-    event.preventDefault();
-    _isSelected(true);
-    setSelectedNweet(nweetObj);
-  }
+  // const onClickComments = (event) => {
+  //   event.preventDefault();
+  //   setCommenting(true);
+  // }
+  // const onCommentSubmit = (event) => {
+  //   event.preventDefault();
+  //   _isSelected(true);
+  //   setSelectedNweet(nweetObj);
+  // }
   const onNweetClick = (event) => {
     event.preventDefault();
   }
@@ -90,9 +90,9 @@ const Nweet = ({ nweetObj, isOwner }) => {
               </span>
             </>
           )}
-          <span onClick={onClickComments}>
+          {/* <span onClick={onClickComments}>
                 <FontAwesomeIcon icon={faComment} />
-              </span>
+              </span> */}
           </div>
         </div>
       )}

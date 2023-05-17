@@ -11,7 +11,7 @@ import { getMyNeewts } from "store/atoms";
 const Profile = ({ userObj, refreshUser }) => {
     const [displayName, setDisplayName] = useState(userObj.displayName);
     //todo : selector로 바꾸기
-    const myNweets = useRecoilValue(getMyNeewts);
+    //const myNweets = useRecoilValue(getMyNeewts);
 
     const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ const Profile = ({ userObj, refreshUser }) => {
                     Log Out
                 </span>
             </form>
-            {   
+            {/* {   
                 myNweets.length !== 0 && myNweets.map((myNweet) => (
                     <Nweet
                         key={myNweet.createdAt}
@@ -73,7 +73,7 @@ const Profile = ({ userObj, refreshUser }) => {
                         isOwner={true}
                     />
                 ))
-            }
+            } */}
         </div>
     );
 }

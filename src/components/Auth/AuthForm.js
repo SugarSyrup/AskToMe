@@ -25,7 +25,7 @@ const AuthForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="container">
-            <input {...register('email', {required: true})} type="email" placeholder="Email" className="authInput" />
+            <input {...register('email', {required: true})} type="email" placeholder="Email" className="authInput"/>
             {errors.email && <p style={{color:"red"}}>Username is required</p>}
             <input {...register('password')} type="password" placeholder="Password" className="authInput" />
             {errors.password && <p style={{color:"red"}}>password is required</p>}

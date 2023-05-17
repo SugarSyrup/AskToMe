@@ -10,9 +10,11 @@ import { allNweets } from "store/atoms";
 
 const Home = ({ userObj }) => {
     const [nweets, setNweets] = useRecoilState(allNweets);
+    //const [nweets, setNweets] = useState(allNweets);
     // const userData
     
     useEffect(() => {
+        console.log(nweets);
         const q = query(
             collection(dbService, "nweets"),
             orderBy("createdAt", "desc")

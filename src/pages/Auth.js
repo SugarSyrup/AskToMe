@@ -29,9 +29,10 @@ const Auth = () => {
                 icon={faCookieBite}
                 color={"#FFBABA"}
                 size="3x"
-                style={{ marginBottom: 30 }}
+                style={{ marginBottom: 30, fontSize:"60px" }}
             />
             <AuthForm />
+            
             <div className="authBtns">
                 <button onClick={onSocialClick} name="google" className="authBtn">
                 Continue with Google <FontAwesomeIcon icon={faGoogle} />

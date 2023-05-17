@@ -9,7 +9,7 @@ const Navigation = ({ userObj }) => {
         <nav>
             <ul style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
                 <li>
-                    <Link to="/" style={{ marginRight: 10 }}>
+                    <Link to="/" style={{ marginRight: 30 , fontSize: 16}}>
                         <FontAwesomeIcon icon={faCookieBite} color={"#FFBABA"} size="2x" />
                     </Link>
                 </li>
@@ -21,15 +21,15 @@ const Navigation = ({ userObj }) => {
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
-                            fontSize: 12,
+                            fontSize: 16,
                         }}
                         >
                             <FontAwesomeIcon icon={faUser} color={"#FFBABA"} size="2x" />
-                            <span style={{ marginTop: 10 }}>
+                            {/* <span style={{ marginTop: 10 }}>
                                 {userObj.displayName
                                 ? `${userObj.displayName}'s Profile`
                                 : "Profile"}
-                            </span>
+                            </span> */}
                     </Link>
                 </li>
             </ul>

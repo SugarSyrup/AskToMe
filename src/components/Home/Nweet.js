@@ -4,9 +4,10 @@ import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { ref, deleteObject } from 'firebase/storage';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt, faComment, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPencilAlt, faComment, faCheck, faImage } from "@fortawesome/free-solid-svg-icons";
 
 import Comments from "components/Home/Comments";
+import Modal from "components/Templates/Modal";
 import { useSetRecoilState } from "recoil";
 import { isSelected, selectedNweet } from "store/atoms";
 
@@ -17,10 +18,11 @@ const Nweet = ({ nweetObj, isOwner, isAdmin }) => {
 
   const setSelectedNweet = useSetRecoilState(selectedNweet);
   const _isSelected = useSetRecoilState(isSelected);
+  const [ ModalEnable, setModalEnable] = useState(false);
   const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
   console.log(NweetTextRef);
   const onDeleteClick = async () => {
-    const ok = window.confirm("Are you sure you want to delete this nweet?");
+    const ok = window.confirm("정말로 질문을 지우시겠습니까?");
     if (ok) {
         await deleteDoc(NweetTextRef);
         if(nweetObj.attachmentUrl){
@@ -64,6 +66,14 @@ const Nweet = ({ nweetObj, isOwner, isAdmin }) => {
     });    
   }
 
+  const onImgClick = () => {
+    setModalEnable(true);
+  }
+
+  const controlModal = () => {
+    setModalEnable(false);
+  }
+
   return (
     <div className="nweet" style={nweetObj.isChecked ? {border: "3px solid #a63393"} : {}}>
       {editing ? (
@@ -87,7 +97,7 @@ const Nweet = ({ nweetObj, isOwner, isAdmin }) => {
       ) : (
         <div onClick={onNweetClick}>
           <pre style={{whiteSpace: "pre-wrap", wordWrap:"anywhere", width:"325px", minHeight:"30px"}}>{nweetObj.text}</pre>
-          {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
+          {nweetObj.attachmentUrl && <FontAwesomeIcon icon={faImage} onClick = {onImgClick} style={{cursor:"pointer"}} className="ImgIcon"/>}
           <div className="nweet__actions">
             {isOwner && (
               <>
@@ -107,6 +117,9 @@ const Nweet = ({ nweetObj, isOwner, isAdmin }) => {
           </div>
           {nweetObj.isChecked && <span className="Answer">질문 답변 완료!!</span>}
         </div>
+      )}
+      {ModalEnable && (
+        <Modal image={nweetObj.attachmentUrl} close={controlModal}></Modal>
       )}
     </div>
   );

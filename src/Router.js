@@ -4,8 +4,10 @@ import Auth from "pages/Auth";
 import Home from "pages/Home";
 import Profile from "pages/Profile"
 import Navigation from "components/Navigation";
+import Modal from "components/Templates/Modal";
 
 const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
+
     return (
         <Router>
             {isLoggedIn && <Navigation userObj={userObj}/>}
@@ -22,7 +24,7 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
             <Routes>
                 { isLoggedIn ? 
                     <>
-                        <Route exact path="/" element={ <Home userObj={userObj}/> } />
+                        <Route exact path="/" element={ <Home userObj={userObj} /> } />
                         <Route exact path="/profile" element={ <Profile userObj={userObj} refreshUser={refreshUser} /> } />
                     </>
                 : <Route exact path="/*" element={ <Auth /> } />

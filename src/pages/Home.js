@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 import { dbService } from "fbInstace";

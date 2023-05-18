@@ -14,7 +14,6 @@ const Home = ({ userObj }) => {
     // const userData
     
     useEffect(() => {
-        console.log(nweets);
         const q = query(
             collection(dbService, "nweets"),
             orderBy("createdAt", "desc")

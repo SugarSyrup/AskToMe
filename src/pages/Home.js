@@ -38,6 +38,7 @@ const Home = ({ userObj }) => {
                         key={nweet.id}
                         nweetObj={nweet}
                         isOwner={nweet.creatorId === userObj.uid}
+                        isAdmin={userObj.email === "jini203802@gmail.com"}
                     />
                     //@ToDo
                     // nweet.comments.map((comment) => (

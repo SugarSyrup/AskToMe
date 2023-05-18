@@ -43,6 +43,7 @@ const NweetFactory = ({ userObj }) => {
         const nweetObj = {
             text:nweet,
             createdAt: Date.now(),
+            isChecked: false,
             cretedAtString : new Date().toString(),
             creatorId : userObj.uid,
             comments: [],
@@ -60,6 +61,7 @@ const NweetFactory = ({ userObj }) => {
             <div className="factoryInput__container">
                 <textarea
                     className="factoryInput__input"
+                    value={nweet}
                     onChange={onChange}
                     placeholder="익명 질문을 자유롭게 남겨주세요"
                 />

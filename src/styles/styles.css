@@ -32,6 +32,10 @@ form {
   width: 100%;
 }
 
+::placeholder{
+  text-align: center;
+}
+
 .nweet-input::placeholder {
   color: white;
   opacity: 0.9;
@@ -201,10 +205,11 @@ form {
   color: rgba(0, 0, 0, 0.8);
 }
 
-.nweet h4 {
+.nweet pre {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
-  margin-top:20px;
+  width:110%;
+  /* margin-top:20px; */
 }
 
 .nweet img {
@@ -236,6 +241,16 @@ form {
   bottom: -5px;
 }
 
+.nweet .Answer{
+  position: absolute;
+  right:10px;
+  bottom:10px;
+  color: #5c1e57;
+  font-size:20px;
+  font-weight:900;
+  padding:5px;
+  border:3px solid #a63393;
+}
 /* Auth */
 
 .authContainer {

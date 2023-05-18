@@ -38,18 +38,45 @@ const Profile = ({ userObj, refreshUser }) => {
             collection(dbService, "nweets"),
             orderBy("createdAt", "desc")
         );
-            
-        getDocs(q)
-            .then((response) => {
-                response.forEach((doc) => {
-                    // console.log(userObj);
-                    // console.log(doc.data());
-                    if(doc.data().creatorId == userObj.uid){
-                        // console.log(doc.data());
-                        setMyNweets((prev) => [...prev, doc.data()]);
-                    }
+
+        onSnapshot(q, (snapshot) => {
+            const nweetArr = snapshot.docs.map((doc) => {
+                return ({
+                    id: doc.id,
+                    ...doc.data(),
                 })
-            })
+                // if (doc.data().creatorId === userObj.uid) {
+                //     return ({
+                //         id: doc.id,
+                //         ...doc.data(),
+                //     })
+                // }
+            });
+
+            setMyNweets(nweetArr);
+        });
+
+        //console.log(userObj);
+
+        // // var tmp = [];
+        // const q = query(
+        //     collection(dbService, "nweets"),
+        //     orderBy("createdAt", "desc")
+        // );
+            
+        // getDocs(q)
+        //     .then((response) => {
+        //         response.forEach((doc) => {
+        //             // console.log(userObj);
+        //             // console.log(doc.data());
+        //             if(doc.data().creatorId == userObj.uid){
+        //                 // console.log(doc.data());
+        //                 setMyNweets((prev) => [...prev, doc.data()]);
+        //             }
+        //         })
+        //     })
+        // console.log(tmp);
+        // setMyNweets(tmp);
         //     onSnapshot(q, (snapshot) => {
         //         const nweetArr = snapshot.docs.map((doc) => ({
         //             id: doc.id,
@@ -77,13 +104,18 @@ const Profile = ({ userObj, refreshUser }) => {
                 </span>
             </form>
             {   
-                myNweets.length !== 0 && myNweets.map((myNweet) => (
-                    <Nweet
-                        key={myNweet.createdAt}
-                        nweetObj={myNweet}
-                        isOwner={true}
-                    />
-                ))
+                myNweets.length !== 0 && myNweets.map((myNweet) => {
+                    if(myNweet.creatorId === userObj.uid){
+                        return (
+                            <Nweet
+                                key={myNweet.createdAt}
+                                nweetObj={myNweet}
+                                isOwner={true}
+                                isAdmin={userObj.email === "jini203802@gmail.com"}
+                            />
+                        )
+                    }
+                })
             }
         </div>
     );

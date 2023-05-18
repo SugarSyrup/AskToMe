@@ -80,19 +80,16 @@ const Nweet = ({ nweetObj, isOwner }) => {
           <h4>{nweetObj.text}</h4>
           {nweetObj.attachmentUrl && <img src={nweetObj.attachmentUrl} />}
           <div className="nweet__actions">
-          {isOwner && (
-            <>
-              <span onClick={onDeleteClick}>
-                <FontAwesomeIcon icon={faTrash} />
-              </span>
-              <span onClick={toggleEditing}>
-                <FontAwesomeIcon icon={faPencilAlt} />
-              </span>
-            </>
-          )}
-          {/* <span onClick={onClickComments}>
-                <FontAwesomeIcon icon={faComment} />
-              </span> */}
+            {isOwner && (
+              <>
+                <span onClick={onDeleteClick}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </span>
+                <span onClick={toggleEditing}>
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </span>
+              </>
+            )}
           </div>
         </div>
       )}

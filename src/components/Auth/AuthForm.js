@@ -15,7 +15,11 @@ const AuthForm = () => {
         }
 
         if(newAccount) {
-            await createUserWithEmailAndPassword(authService,email,password);
+            await createUserWithEmailAndPassword(authService,email,password)
+                .then(() => {})
+                .catch((error) => {
+                    window.alert(error);
+                });
         } else {
             await signInWithEmailAndPassword(authService, email, password);
         }

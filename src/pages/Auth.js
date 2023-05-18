@@ -31,6 +31,9 @@ const Auth = () => {
                 size="3x"
                 style={{ marginBottom: 30, fontSize:"60px" }}
             />
+            <h1 style={{marginBottom:"20px", fontSize:"36px", fontWeight:"bolder"}}>Ask To Me!</h1>
+            <h4 style={{marginBottom:"10px", fontSize:"16px"}}>처음 접속하신다면, Create New Account를 통해 회원가입 or 소셜 로그인을 해주세요</h4>
+            <h4 style={{marginBottom:"80px", fontSize:"14px"}}>회원가입을 위한 Email과 password정보는 모두 본인이 작성한 글 수정/삭제 용으로 사용됩니다.</h4>
             <AuthForm />
             
             <div className="authBtns">

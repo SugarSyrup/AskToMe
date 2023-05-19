@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 import { dbService } from "fbInstace";
@@ -14,7 +14,6 @@ const Home = ({ userObj }) => {
     // const userData
     
     useEffect(() => {
-        console.log(nweets);
         const q = query(
             collection(dbService, "nweets"),
             orderBy("createdAt", "desc")
@@ -39,6 +38,7 @@ const Home = ({ userObj }) => {
                         key={nweet.id}
                         nweetObj={nweet}
                         isOwner={nweet.creatorId === userObj.uid}
+                        isAdmin={userObj.email === "jini203802@gmail.com"}
                     />
                     //@ToDo
                     // nweet.comments.map((comment) => (

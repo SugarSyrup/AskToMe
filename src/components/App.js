@@ -24,7 +24,10 @@ function App() {
   return (
     <>
       { initialize ? <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} refreshUser={refreshUser}/> : "Initializing....."}
-      {/* <footer>&copy; Nwitter {new Date().getFullYear()} </footer> */}
+      <footer> 
+        <span>&copy; AskToMe! FrontEnd Web Developer <b>SugarSyrup</b> {new Date().getFullYear()}</span>
+        <span>Contact Us : tlfvm04@naver.com</span>
+      </footer>
     </>
   );
 }

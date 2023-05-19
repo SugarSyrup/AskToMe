@@ -27,8 +27,7 @@ const NweetFactory = ({ userObj }) => {
         }
         reader.readAsDataURL(theFile);
     }
-    const onSubmit = async (event) => {
-        event.preventDefault();    
+    const onSubmit = async () => {
         if (nweet === "") {
             return;
           }
@@ -43,6 +42,7 @@ const NweetFactory = ({ userObj }) => {
         const nweetObj = {
             text:nweet,
             createdAt: Date.now(),
+            isChecked: false,
             cretedAtString : new Date().toString(),
             creatorId : userObj.uid,
             comments: [],
@@ -58,14 +58,13 @@ const NweetFactory = ({ userObj }) => {
     return(
         <form onSubmit={onSubmit} className="factoryForm">
             <div className="factoryInput__container">
-                <input
+                <textarea
                     className="factoryInput__input"
-                    value={nweet}
                     onChange={onChange}
-                    type="text"
+                    value={nweet}
                     placeholder="익명 질문을 자유롭게 남겨주세요"
                 />
-                <input type="submit" value="&rarr;" className="factoryInput__arrow" />
+                <span className="factoryInput__arrow" onClick={onSubmit}>&rarr;</span>
             </div>
             <label htmlFor="attach-file" className="factoryInput__label">
                 <span>Add photo</span>

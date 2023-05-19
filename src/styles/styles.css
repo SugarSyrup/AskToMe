@@ -32,6 +32,10 @@ form {
   width: 100%;
 }
 
+::placeholder{
+  text-align: center;
+}
+
 .nweet-input::placeholder {
   color: white;
   opacity: 0.9;
@@ -83,6 +87,10 @@ form {
 
 .logOut {
   margin-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 20px;
+  font-weight:bolder;
 }
 
 /* Nwitter Factory */
@@ -102,17 +110,27 @@ form {
   position: relative;
   margin-bottom: 20px;
   width: 100%;
+  height:60px;
+  
+  border: 1px solid #FFBABA;
+  border-radius: 30px;
+  background-color:white;
 }
 
 .factoryInput__input {
-  flex-grow: 1;
-  height: 60px;
+  height: 40px;
   padding: 0px 20px;
   color: white;
-  border: 1px solid #FFBABA;
+  width:90%;
+  border:none;
   border-radius: 30px;
   font-weight: 500;
   font-size: 16px;
+  color:black;
+}
+
+.factoryInput__input:focus {
+  outline: none;
 }
 
 .factoryInput__arrow {
@@ -187,16 +205,24 @@ form {
   color: rgba(0, 0, 0, 0.8);
 }
 
-.nweet h4 {
+.nweet pre {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 16px;
-  margin-top:20px;
+  width:110%;
+  /* margin-top:20px; */
 }
 
 .nweet img {
   margin-top:30px;
   max-width:100%;
+  max-height:200px;
   border-radius:5px;
+}
+
+.nweet .ImgIcon {
+  position: absolute;
+  right:10px;
+  bottom:10px;
 }
 
 .nweet__actions {
@@ -222,6 +248,16 @@ form {
   bottom: -5px;
 }
 
+.nweet .Answer{
+  position: absolute;
+  right:10px;
+  bottom:10px;
+  color: #5c1e57;
+  font-size:20px;
+  font-weight:900;
+  padding:5px;
+  border:3px solid #a63393;
+}
 /* Auth */
 
 .authContainer {
@@ -290,4 +326,46 @@ form {
   display: block;
   font-size: 12px;
   text-decoration: underline;
+}
+
+
+
+/* Modal */
+.background {
+  z-index:10;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  z-index:12;
+  background-color: white;
+}
+
+.modal img {
+  z-index:16;
+  width:100%;
+  height: 100%;
+}
+
+
+footer {
+  width:100%;
+  height:40px;
+  padding-bottom:10px;
+
+  position: absolute;
+  bottom:0;
+
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }

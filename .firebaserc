@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "nwitter-616a8"
-  }
+    "default": "nwitter-616a8",
+    "dev": "nwitter-616a8"
+  },
+  "targets": {},
+  "etags": {}
 }

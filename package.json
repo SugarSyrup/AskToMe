@@ -32,8 +32,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build",
+    "build:dev": "env-cmd -f .env.development npm run build && firebase deploy -P dev",
+    "build:prod": "env-cmd -f .env npm run build && firebase deploy -P prod",
+    "ghdeploy": "gh-pages -d build",
     "predeploy": "npm run build"
   },
   "eslintConfig": {
@@ -54,5 +57,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage":"https://www.asktome.site/"
+  "homepage": "https://www.asktome.site/",
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  }
 }

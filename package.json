@@ -2,7 +2,6 @@
   "name": "nwitter",
   "version": "0.1.0",
   "private": true,
-  "homepage":"https://asktome.site/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -55,5 +54,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://SugarSyrup.github.io/nwitter"
+  "homepage":"https://asktome.site/"
 }

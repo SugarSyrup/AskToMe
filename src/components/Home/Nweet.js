@@ -78,8 +78,8 @@ const Nweet = ({ nweetObj, isOwner, isAdmin }) => {
     <div className="nweet" style={nweetObj.isChecked ? {border: "3px solid #a63393"} : {}}>
       {editing ? (
         <>
-          <form onSubmit={onSubmit} className="container nweetEdit"> 
-            <input
+          <form onSubmit={onSubmit} className="container nweetEdit" style={{paddingBottom:"0px"}}> 
+            <textarea
               type="text"
               placeholder="질문을 수정하세요"
               value={newNweet}

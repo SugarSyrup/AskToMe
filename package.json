@@ -59,6 +59,9 @@
   },
   "homepage": "https://www.asktome.site/",
   "devDependencies": {
-    "env-cmd": "^10.1.0"
+    "customize-cra": "^1.0.0",
+    "env-cmd": "^10.1.0",
+    "react-app-rewired": "^2.2.1",
+    "webpack": "^5.88.2"
   }
 }
